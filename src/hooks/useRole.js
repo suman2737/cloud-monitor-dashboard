@@ -1,12 +1,7 @@
 export default function useRole(){
 
- const role = localStorage.getItem("userRole") || "viewer"
+ const role = localStorage.getItem("userRole") || "admin"
 
- return{
-  role,
-  isAdmin: role==="admin",
-  isOperator: role==="operator",
-  isViewer: role==="viewer"
- }
+ return{role}
 
 }
