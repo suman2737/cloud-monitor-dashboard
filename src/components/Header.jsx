@@ -1,26 +1,32 @@
-export default function Header({autoRefresh,setAutoRefresh,refresh}){
+export default function Header({ autoRefresh, setAutoRefresh, refresh }) {
 
- return(
+  return (
 
- <div style={{display:"flex",gap:20,padding:20}}>
+    <div className="header">
 
- <h2>Cloud Service Monitor</h2>
+      <h1 className="title">Cloud Service Monitor</h1>
 
- <label>
- Auto Refresh
- <input
- type="checkbox"
- checked={autoRefresh}
- onChange={()=>setAutoRefresh(!autoRefresh)}
- />
- </label>
+      <div className="controls">
 
- <button onClick={refresh}>
- Refresh
- </button>
+        <label>
+          Auto Refresh
+          <input
+            type="checkbox"
+            checked={autoRefresh}
+            onChange={e => setAutoRefresh(e.target.checked)}
+          />
+        </label>
 
- </div>
+        <button
+          className="refresh-btn"
+          onClick={refresh}
+        >
+          Refresh
+        </button>
 
- )
+      </div>
 
+    </div>
+
+  );
 }

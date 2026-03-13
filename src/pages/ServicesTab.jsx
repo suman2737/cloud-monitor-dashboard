@@ -1,18 +1,20 @@
-import {services} from "../data/mockData"
-import ServiceCard from "../components/ServiceCard"
+import ServiceCard from "../components/ServiceCard";
+import { services } from "../data/mockData";
 
-export default function ServicesTab(){
+export default function ServicesTab() {
 
- return(
+  return (
 
- <div style={{display:"flex",gap:20}}>
+    <div className="cards">
 
- {services.map(service=>(
-   <ServiceCard key={service.id} service={service}/>
- ))}
+      {services.map(service => (
+        <ServiceCard
+          key={service.id}
+          service={service}
+        />
+      ))}
 
- </div>
+    </div>
 
- )
-
+  );
 }
