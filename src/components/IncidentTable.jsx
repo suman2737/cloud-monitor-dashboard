@@ -1,8 +1,8 @@
 import { tableColumns } from "../config/tableConfig"
 
-export default function IncidentTable({ data, onSelect, setData }){
+export default function IncidentTable({ data, onSelect, setData }) {
 
- function acknowledge(id){
+ function acknowledge(id) {
   setData(prev =>
    prev.map(i =>
     i.id === id
@@ -12,7 +12,7 @@ export default function IncidentTable({ data, onSelect, setData }){
   )
  }
 
- function resolve(id){
+ function resolve(id) {
   setData(prev =>
    prev.map(i =>
     i.id === id
@@ -22,15 +22,15 @@ export default function IncidentTable({ data, onSelect, setData }){
   )
  }
 
- if(!data || data.length === 0){
-  return(
+ if (!data || data.length === 0) {
+  return (
    <div className="table-container">
     <p className="empty-state">No incidents found</p>
    </div>
   )
  }
 
- return(
+ return (
 
  <div className="table-container">
 
@@ -52,7 +52,7 @@ export default function IncidentTable({ data, onSelect, setData }){
 
  {tableColumns.map(col => {
 
- switch(col.type){
+ switch (col.type) {
 
  case "text":
  return <td key={col.id}>{row[col.id]}</td>
@@ -62,7 +62,7 @@ export default function IncidentTable({ data, onSelect, setData }){
  <td key={col.id}>
  <button
  className="link-btn"
- onClick={()=>onSelect(row)}
+ onClick={() => onSelect(row)}
  >
  {row[col.id]}
  </button>
@@ -70,27 +70,36 @@ export default function IncidentTable({ data, onSelect, setData }){
  )
 
  case "severity":
+ const sev = row[col.id]?.toLowerCase()?.trim()
  return (
  <td key={col.id}>
- <span className={`severity-${row[col.id].toLowerCase()}`}>
+ <span className={`severity-${sev}`}>
  {row[col.id]}
  </span>
  </td>
  )
 
  case "status":
+ const stat = row[col.id]?.toLowerCase()?.trim()
  return (
  <td key={col.id}>
- <span className={`status-${row[col.id].toLowerCase()}`}>
+ <span className={`status-${stat}`}>
  {row[col.id]}
  </span>
  </td>
  )
 
  case "time":
+
+ let minutes = "0"
+
+ if (row[col.id]) {
+  minutes = Math.floor((Date.now() - row[col.id]) / 60000)
+ }
+
  return (
  <td key={col.id}>
- {Math.floor((Date.now()-row[col.id])/60000)} min ago
+ {minutes} min ago
  </td>
  )
 
@@ -102,7 +111,7 @@ export default function IncidentTable({ data, onSelect, setData }){
  {row.status === "Open" && (
  <button
  className="ack-btn"
- onClick={()=>acknowledge(row.id)}
+ onClick={() => acknowledge(row.id)}
  >
  Acknowledge
  </button>
@@ -111,7 +120,7 @@ export default function IncidentTable({ data, onSelect, setData }){
  {row.status !== "Resolved" && (
  <button
  className="resolve-btn"
- onClick={()=>resolve(row.id)}
+ onClick={() => resolve(row.id)}
  >
  Resolve
  </button>
