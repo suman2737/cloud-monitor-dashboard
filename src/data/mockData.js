@@ -27,7 +27,7 @@ export const incidents = [
  severity:"High",
  status:"Open",
  assignee:"John",
- createdAt:Date.now()-500000
+ created:Date.now()-8*60000
 },
 
 {
@@ -37,7 +37,7 @@ export const incidents = [
  severity:"Critical",
  status:"Acknowledged",
  assignee:"Sarah",
- createdAt:Date.now()-200000
+ created:Date.now()-3*60000
 }
 
 ]

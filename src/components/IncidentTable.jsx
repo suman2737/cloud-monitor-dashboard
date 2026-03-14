@@ -91,11 +91,13 @@ export default function IncidentTable({ data, onSelect, setData }) {
 
  case "time":
 
- let minutes = "0"
+//  let minutes = "0"
 
- if (row[col.id]) {
-  minutes = Math.floor((Date.now() - row[col.id]) / 60000)
- }
+//  if (row[col.id]) {
+//   minutes = Math.floor((Date.now() - row[col.id]) / 60000)
+//  }
+const createdTime = row[col.id] || (Date.now() - 5*60000);
+const minutes = Math.floor((Date.now() - createdTime) / 60000);
 
  return (
  <td key={col.id}>
